@@ -84,10 +84,40 @@ void FPCamera::Update(double dt)
 	}
 	else if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_RIGHT)) {
 
-		// To do
+		// Calculate amount of angle to rotate
+		float angle = ROTATE_SPEED * static_cast<float>(dt);
+
+		glm::mat4 yaw = glm::rotate(
+			glm::mat4(1.f),             // Default identity
+			glm::radians(angle),        // Convert degree angle to radians
+			glm::vec3(up.x, up.y, up.z) // Use camera Up vector to rotate
+		);
+
+		// Calculate the rotated view vector
+		glm::vec3 rotatedView = yaw * glm::vec4(view, 0.f);
+		target = position - rotatedView;
+
+		isDirty = true;
 
 	}
 	this->Refresh();
+	if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_UP)) {
+
+		right.y = 0; // Right vector should not point any y direction
+
+		rotation angle = rotation speed * dt;
+		glm::mat4 pitch = glm::rotate(…, …, …); // Rotate on right vector
+
+		rotatedView pitch* glm::vec4(view, 0);
+		target = position + rotatedView;
+
+		isDirty = true;
+	}
+	else if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_UP)) {
+
+		// To do
+
+	}
 
 }
 
