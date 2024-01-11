@@ -30,3 +30,4 @@ Release/
 *.tlog
 *.pdb
 *.idb
+/DXGL-FRAMEWORK.sln
