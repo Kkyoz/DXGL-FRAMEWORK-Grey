@@ -74,7 +74,10 @@ void SceneTexture::Init()
 	m_parameters[U_COLOR_TEXTURE] = glGetUniformLocation(m_programID, "colorTexture");
 
 	// Initialise camera properties
-	camera.Init(45.f, 45.f, 10.f);
+	camera.Init(
+	glm::vec3(3,0,3),
+		glm::vec3(0,0,0),
+		glm::vec3(0,1,0));
 
 	// Init VBO here
 	for (int i = 0; i < NUM_GEOMETRY; ++i)

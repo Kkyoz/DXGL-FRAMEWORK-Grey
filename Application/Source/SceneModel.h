@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "Mesh.h"
 #include "AltAzCamera.h"
+#include "FPCamera.h"
 #include "MatrixStack.h"
 #include "Light.h"
 
@@ -71,7 +72,7 @@ private:
 	unsigned m_programID;
 	unsigned m_parameters[U_TOTAL];
 
-	AltAzCamera camera;
+	FPCamera camera;
 	int projType = 1; // fix to 0 for orthographic, 1 for projection
 
 	MatrixStack modelStack, viewStack, projectionStack;

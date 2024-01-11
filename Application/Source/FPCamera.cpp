@@ -33,7 +33,7 @@ void FPCamera::Update(double dt)
 {
 
 	static const float ROTATE_SPEED = 100.0f;
-	static const float ZOOM_SPEED = 10.0f;
+	static const float ZOOM_SPEED = 0.50f;
 
 
 	glm::vec3 view = glm::normalize(target - position); // calculate the new view vector
@@ -52,8 +52,8 @@ void FPCamera::Update(double dt)
 	}
 	if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_D)) {
 
-		position -= right * ZOOM_SPEED;
-		target -= right * ZOOM_SPEED;
+		position += right * ZOOM_SPEED;
+		target += right * ZOOM_SPEED;
 
 		isDirty = true;
 
@@ -61,8 +61,8 @@ void FPCamera::Update(double dt)
 	else if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_A)) {
 
 		// To do: for opposite direction
-		position += right * ZOOM_SPEED;
-		target += right * ZOOM_SPEED;
+		position -= right * ZOOM_SPEED;
+		target -= right * ZOOM_SPEED;
 
 	}
 	if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_LEFT)) {
@@ -85,7 +85,7 @@ void FPCamera::Update(double dt)
 	else if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_RIGHT)) {
 
 		// Calculate amount of angle to rotate
-		float angle = ROTATE_SPEED * static_cast<float>(dt);
+		float angle = -ROTATE_SPEED * static_cast<float>(dt);
 
 		glm::mat4 yaw = glm::rotate(
 			glm::mat4(1.f),             // Default identity
@@ -95,7 +95,7 @@ void FPCamera::Update(double dt)
 
 		// Calculate the rotated view vector
 		glm::vec3 rotatedView = yaw * glm::vec4(view, 0.f);
-		target = position - rotatedView;
+		target = position + rotatedView;
 
 		isDirty = true;
 
@@ -103,15 +103,7 @@ void FPCamera::Update(double dt)
 	this->Refresh();
 	if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_UP)) {
 
-		right.y = 0; // Right vector should not point any y direction
-
-		rotation angle = rotation speed * dt;
-		glm::mat4 pitch = glm::rotate(…, …, …); // Rotate on right vector
-
-		rotatedView pitch* glm::vec4(view, 0);
-		target = position + rotatedView;
-
-		isDirty = true;
+		//to do
 	}
 	else if (KeyboardController::GetInstance()->IsKeyDown(GLFW_KEY_UP)) {
 
